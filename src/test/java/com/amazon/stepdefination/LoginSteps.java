@@ -4,85 +4,83 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class LoginSteps {
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+import java.util.Map;
+
+import com.amazon.pages.MainPage;
+import com.amazon.pages.loginPage;
+import com.amazon.utilities.BaseClass;
+
+import io.cucumber.datatable.DataTable;
+
+public class LoginSteps extends BaseClass{
 	
-	@Given("User is on amazon main page")
-	public void user_is_on_amazon_main_page() {
-	    // Write code here that turns the phrase above into concrete actions
+	@Given("User is on amazon main page {string}")
+	public void user_is_on_amazon_main_page(String pageTitle) {
+		assertEquals(pageTitle, driver.getTitle());
 	}
 
 	@When("we click on sign button")
 	public void we_click_on_sign_button() {
-	    // Write code here that turns the phrase above into concrete actions
+		MainPage.ClickSignInBtn();
 	}
 
-	@Then("login page is appears")
-	public void login_page_is_appears() {
-	    // Write code here that turns the phrase above into concrete actions
+	@Then("login page is appears {string}")
+	public void login_page_is_appears(String pageTitle) {
+		assertEquals(pageTitle, driver.getTitle());
 	}
 
 	@When("we enter Wrong email")
-	public void we_enter_wrong_email(io.cucumber.datatable.DataTable dataTable) {
-	    // Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-	    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-	    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-	    //
-	    // For other transformations you can register a DataTableType.
+	public void we_enter_wrong_email(DataTable dataTable) {
+	    List<Map<String,String>> maps = dataTable.asMaps();
+	    String email = maps.get(0).get("WrongEmail");
+	    loginPage.EnterValueEmailField(email);
+	    
 	}
 
 	@When("click on continue button")
 	public void click_on_continue_button() {
-	    // Write code here that turns the phrase above into concrete actions
+		loginPage.ClickOnContinueBtn();
 	}
 
 	@Then("Error message is appears")
 	public void error_message_is_appears() {
-	    // Write code here that turns the phrase above into concrete actions
+		String errorMsg = loginPage.getMessage();
+		System.out.println(errorMsg);
 	}
 
 	@When("we enter Corect email")
-	public void we_enter_corect_email(io.cucumber.datatable.DataTable dataTable) {
-	    // Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-	    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-	    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-	    //
-	    // For other transformations you can register a DataTableType.
+	public void we_enter_corect_email(DataTable dataTable) {
+		List<Map<String,String>> maps = dataTable.asMaps();
+	    String email = maps.get(0).get("RightEmail");
+	    loginPage.EnterValueEmailField(email);
 	}
 
 	@When("Enter Incorrect password")
-	public void enter_incorrect_password(io.cucumber.datatable.DataTable dataTable) {
-	    // Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-	    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-	    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-	    //
-	    // For other transformations you can register a DataTableType.
+	public void enter_incorrect_password(DataTable dataTable) {
+		List<Map<String,String>> maps = dataTable.asMaps();
+	    String password = maps.get(0).get("WrongPassword");
+	    loginPage.EnterValuePasswordField(password);
+	    
 	}
 
 	@When("click on sign button")
 	public void click_on_sign_button() {
-	    // Write code here that turns the phrase above into concrete actions
+		loginPage.ClickOnSign_InBtn();
 	}
 
 	@When("Enter Correct password")
-	public void enter_correct_password(io.cucumber.datatable.DataTable dataTable) {
-	    // Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-	    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-	    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-	    //
-	    // For other transformations you can register a DataTableType.
+	public void enter_correct_password(DataTable dataTable) {
+		List<Map<String,String>> maps = dataTable.asMaps();
+	    String password = maps.get(0).get("RightPassword");
+	    loginPage.EnterValuePasswordField(password);
 	}
 
-	@Then("main page is apperas")
-	public void main_page_is_apperas() {
-	    // Write code here that turns the phrase above into concrete actions
+	@Then("main page is apperas {string}")
+	public void main_page_is_apperas(String pageTitle) {
+		assertEquals(pageTitle, driver.getTitle());
 	}
 
 }
