@@ -11,7 +11,8 @@ import io.cucumber.junit.CucumberOptions;
 				 plugin = {	"pretty",
 							"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
 				 monochrome = true,
-				 dryRun = false)
+				 dryRun = false,
+				 tags = "@search")
 public class TestRunnerJunit {
 
 }
