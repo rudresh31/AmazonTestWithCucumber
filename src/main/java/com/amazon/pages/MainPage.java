@@ -17,6 +17,7 @@ public class MainPage extends BaseClass {
 	static By searchBtn = By.xpath(prop1.getProperty("searchbtn"));
 	static By cart = By.xpath(prop1.getProperty("cart"));
 	static By searchData = By.xpath("//div[@id='suggestions-template']/div/div//span[2]");
+	static By searchProductDetail = By.xpath("//span[contains(text(),'Redmi Note 9 (Arctic White, 4GB RAM, 64GB Storage)')]");
 	
 	public static void ClickSignInBtn() {
 		driver.findElement(signInBtn).click();

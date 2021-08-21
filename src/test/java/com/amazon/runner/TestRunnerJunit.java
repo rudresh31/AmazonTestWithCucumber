@@ -9,7 +9,8 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(features = {"src/test/resources/com/feature"},
 				 glue = {"com.amazon.stepdefination","com.amazon.hooks"},
 				 plugin = {	"pretty",
-							"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
+							"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+							"rerun:programOutput/failRerun.txt"},
 				 monochrome = true,
 				 dryRun = false,
 				 tags = "@search")

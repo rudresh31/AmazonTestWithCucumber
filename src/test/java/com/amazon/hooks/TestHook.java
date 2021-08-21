@@ -30,13 +30,13 @@ public class TestHook extends BaseClass{
 		driver.get(prop.getProperty("baseUrl"));
 	}
 	
-	@After
+	@After(order = 0)
 	public static void end() {
 		DriverSetup.getDriver().close();
 	}
 	
 	
-	
+	//@BeforeStep
 	@AfterStep
 	public static void addFailScenariosScreenshot(Scenario scenario) throws IOException {
 		  if(scenario.isFailed()) {
